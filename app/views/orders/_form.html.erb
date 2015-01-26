@@ -1,0 +1,25 @@
+<%= form_for(@order) do |f| %>
+<%= render "shared/error_messages", :target => @order %>
+<h4> Please pick the customer </h4>
+<div class="field">
+   <% @customer.each do |customer| %>
+   <%= check_box_tag "order[customer_id][]", customer.id %>
+    <%= customer.company_name %>
+  <% end %>
+  <h4> Please pick the correct template </h4>
+  <div class="field">
+    <% @template.each do |template| %>
+    <%= check_box_tag "order[template_ids][]", template.id %>
+    <%= template.final_product %>
+  <% end %>
+
+  <h4> Due date: <h4>
+  <%= f.datetime_field :due_at %>
+
+  <h4> Any Special Notes? </h4>
+  <%= f.text_field :special_notes %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

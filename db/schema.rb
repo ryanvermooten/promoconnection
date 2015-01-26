@@ -11,10 +11,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150125172949) do
+ActiveRecord::Schema.define(version: 20150126020752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: true do |t|
+    t.string   "company_name"
+    t.string   "email"
+    t.integer  "phone_number"
+    t.string   "contact_person"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "materials", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "materials_suppliers", id: false, force: true do |t|
+    t.integer "material_id", null: false
+    t.integer "supplier_id", null: false
+  end
+
+  add_index "materials_suppliers", ["material_id", "supplier_id"], name: "index_materials_suppliers_on_material_id_and_supplier_id", using: :btree
+
+  create_table "materials_templates", id: false, force: true do |t|
+    t.integer "material_id", null: false
+    t.integer "template_id", null: false
+  end
+
+  add_index "materials_templates", ["template_id", "material_id"], name: "index_materials_templates_on_template_id_and_material_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "customer_id"
+    t.text     "special_notes"
+    t.datetime "due_at"
+  end
+
+  create_table "orders_templates", id: false, force: true do |t|
+    t.integer "order_id",    null: false
+    t.integer "template_id", null: false
+    t.string  "quantity"
+  end
+
+  add_index "orders_templates", ["template_id", "order_id"], name: "index_orders_templates_on_template_id_and_order_id", using: :btree
+
+  create_table "orders_users", id: false, force: true do |t|
+    t.integer "order_id", null: false
+    t.integer "user_id",  null: false
+  end
+
+  add_index "orders_users", ["order_id", "user_id"], name: "index_orders_users_on_order_id_and_user_id", using: :btree
+  add_index "orders_users", ["user_id", "order_id"], name: "index_orders_users_on_user_id_and_order_id", using: :btree
+
+  create_table "suppliers", force: true do |t|
+    t.string   "company_name"
+    t.string   "email"
+    t.integer  "phone_number"
+    t.string   "contact_person"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "templates", force: true do |t|
+    t.string "final_product"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

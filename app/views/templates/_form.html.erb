@@ -1,0 +1,19 @@
+<%= form_for(@template) do |f| %>
+<%= render "shared/error_messages", :target => @template %>
+<fieldset>
+<p>
+  <div class="field">
+    <%= f.label :final_product %><br>
+    <%= f.text_field :final_product %>
+  </div>
+  </p>
+  <div class = "field">
+  <% Material.all.each do |material| %>
+    <%= check_box_tag "template[material_ids][], material.id" %>
+    <%= material.name %> <br/>
+    <% end %>
+  </fieldset>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

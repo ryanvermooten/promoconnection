@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+<strong>Add a material</strong>
+<%= form_for([@supplier.material, @materials]) do |g| %>
+% if @material.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@material.errors.count, "error") %> prohibited this material from being saved:</h2>
+
+<fieldset>
+
+      <%= g.label :name %> 
+      <%= g.text_field :name %>
+    </p>
+
+<div class="form-actions">
+       <%= g.submit 'continue', :class =>  'btn btn-lg btn-success' %>
+<% end %>
+</div>
+</fieldset>
