@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :suppliers do
   	resources :materials
   end
@@ -8,6 +9,8 @@ Rails.application.routes.draw do
   resources :orders
 
   resources :templates
+
+  resources :activities
 
 
   mount Upmin::Engine => '/admin'

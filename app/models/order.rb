@@ -2,6 +2,8 @@ class Order < ActiveRecord::Base
 	has_and_belongs_to_many :users
 	belongs_to :customer
 	has_and_belongs_to_many :templates
+	include PublicActivity::Model
+	tracked
 
 	def due_at_string
 		due_at.to_s(:db)
