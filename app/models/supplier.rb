@@ -1,5 +1,6 @@
 class Supplier < ActiveRecord::Base
-	has_and_belongs_to_many :materials
 	include PublicActivity::Model
-	tracked
+	tracked 
+	has_and_belongs_to_many :materials
+	
 end

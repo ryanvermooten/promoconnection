@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211192753) do
+ActiveRecord::Schema.define(version: 20150218083200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150211192753) do
     t.integer  "customer_id"
     t.text     "special_notes"
     t.datetime "due_at"
+    t.string   "image"
   end
 
   create_table "orders_templates", id: false, force: true do |t|
@@ -83,6 +84,15 @@ ActiveRecord::Schema.define(version: 20150211192753) do
 
   add_index "orders_users", ["order_id", "user_id"], name: "index_orders_users_on_order_id_and_user_id", using: :btree
   add_index "orders_users", ["user_id", "order_id"], name: "index_orders_users_on_user_id_and_order_id", using: :btree
+
+  create_table "quotes", force: true do |t|
+    t.integer  "total_amount"
+    t.integer  "order_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "quotes", ["order_id"], name: "index_quotes_on_order_id", using: :btree
 
   create_table "suppliers", force: true do |t|
     t.string   "company_name"

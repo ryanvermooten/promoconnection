@@ -1,5 +1,7 @@
 <h1>Listing orders</h1>
 
+
+  </div>
 <table>
   <thead>
     <tr>
@@ -16,11 +18,16 @@
       <tr>
         <td><%= t.customer_id %></td>
          <td><%= t.templates %></td>
-        <td><%= t.special_notes %></td>
-         <td><%= t.due_at %></td>
-      </tr>
+         <td><%= t.special_notes %></td>
+          <td><%= t.due_at %></td>
+          <div id="orders">
+  <div class ="artwork">
+    <%= image_tag @order.image_url(:thumb).to_s %>
+  </div>
+    </div>
+       </tr>
     <% end %>
   </tbody>
-</table>
+</table> %>
 
 <%= link_to 'New Order', new_order_path %>

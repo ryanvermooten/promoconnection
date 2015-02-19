@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
 
   def show
     @order= Order.find(params[:id])
+    @customer = Customer.all
     respond_with(@order)
   end
 
@@ -22,6 +23,9 @@ class OrdersController < ApplicationController
   end
 
   def edit
+     @order= Order.find(params[:id])
+     @customer = @order.customer
+     @template = @order.templates
   end
 
   def create
@@ -42,6 +46,10 @@ class OrdersController < ApplicationController
 
   private
 
+  def import
+    Order.import(params[:file])
+    redirect_to root_url, notice: "products imported"
+
     def prepare_customers
       @customers = Customer.all
     def set_order
@@ -49,7 +57,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:customer_id, :special_notes, :due_at, :template_ids => [])
+      params.require(:order).permit(:customer_id, :special_notes, :image, :due_at, :template_ids => [])
     end
 end
 end

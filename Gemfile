@@ -17,6 +17,8 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'upmin-admin'
 gem 'public_activity'
+gem 'carrierwave'
+gem 'rmagick'
 group :development do
 #  gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

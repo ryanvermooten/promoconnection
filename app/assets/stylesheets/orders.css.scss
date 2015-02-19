@@ -1,3 +1,28 @@
 // Place all the styles related to the orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.artwork {
+  border: solid 1px #CCC;
+  padding: 10px 10px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.artwork .name {
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.artwork .image_placeholder {
+  width: 200px;
+  height: 150px;
+  background-color: #B6B6B6;
+}
+
+.artwork .actions {
+  font-size: 10px;
+  text-align: center;
+  color: #777;
+}
