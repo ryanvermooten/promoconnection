@@ -7,3 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
+
+title = Title.create([{ title: 'Mr'}, {title: 'Mrs'}, {title:'Miss'}, {title: 'Dr.'}, {title:'Ms.'}, {title:'Prof'}, {title:'Rev'}, {title:'Lady'},{title:'Sir'}])
+
+term = Term.create([{term: 'COD'}, {term: '30 days'} ])

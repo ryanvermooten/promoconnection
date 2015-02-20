@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218083200) do
+ActiveRecord::Schema.define(version: 20150219203338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,13 +33,43 @@ ActiveRecord::Schema.define(version: 20150218083200) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
+  create_table "contacts", force: true do |t|
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email"
+    t.string  "mobile_number"
+    t.string  "job_title"
+    t.integer "title_id"
+  end
+
+  add_index "contacts", ["title_id"], name: "index_contacts_on_title_id", using: :btree
+
   create_table "customers", force: true do |t|
     t.string   "company_name"
     t.string   "email"
     t.integer  "phone_number"
-    t.string   "contact_person"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active"
+    t.string   "secondary_contact"
+    t.string   "bill_to"
+    t.integer  "phone_alt"
+    t.integer  "fax"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "county"
+    t.integer  "post_code"
+    t.string   "vat_country"
+    t.integer  "vat_number"
+    t.integer  "user_id"
+    t.string   "terms"
+    t.integer  "credit_limit"
+    t.string   "area"
+    t.string   "company_email"
+    t.integer  "title_id"
+    t.integer  "contact_id"
   end
 
   create_table "materials", force: true do |t|
@@ -85,6 +115,11 @@ ActiveRecord::Schema.define(version: 20150218083200) do
   add_index "orders_users", ["order_id", "user_id"], name: "index_orders_users_on_order_id_and_user_id", using: :btree
   add_index "orders_users", ["user_id", "order_id"], name: "index_orders_users_on_user_id_and_order_id", using: :btree
 
+  create_table "payment_options", force: true do |t|
+    t.integer "term_id"
+    t.integer "credit_limit"
+  end
+
   create_table "quotes", force: true do |t|
     t.integer  "total_amount"
     t.integer  "order_id"
@@ -105,6 +140,14 @@ ActiveRecord::Schema.define(version: 20150218083200) do
 
   create_table "templates", force: true do |t|
     t.string "final_product"
+  end
+
+  create_table "terms", force: true do |t|
+    t.string "term"
+  end
+
+  create_table "titles", force: true do |t|
+    t.string "title"
   end
 
   create_table "users", force: true do |t|

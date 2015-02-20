@@ -1,0 +1,3 @@
+class PaymentOption < ActiveRecord::Base
+	belongs_to :term
+end

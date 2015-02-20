@@ -1,0 +1,17 @@
+  <h2> Payment options </h2>
+  <div class="field">
+    <%= f.label :vat_country %><br>
+    <%= f.text_field :vat_country %>
+  </div>
+  <div class="field">
+    <%= f.label :vat_number %><br>
+    <%= f.text_field :vat_number %>
+  </div>
+  <div class="field">
+    <%= f.label :terms %><br>
+    <%= f.collection_select :terms,  Term.order(:term),:id,:term, include_blank: false %>
+  </div>
+  <div class="field">
+    <%= f.label :credit_limit %><br>
+    <%= f.text_field :credit_limit %>
+  </div>

@@ -1,0 +1,23 @@
+<h2> Contact zzzz </h2>
+  <div class="field">
+    <%= d.label :title %>
+    <%= d.collection_select :title_id,  Title.order(:title),:id,:title, include_blank: true %>
+  </div>
+ 
+  <div class="field">
+    <%= d.label :first_name %><br>
+    <%= d.number_field :first_name %>
+  </div>
+  <div class="field">
+    <%= d.label :last_name %><br>
+    <%= d.text_field :last_name %>
+  </div>
+  <%# <div class="field">
+    <%= f.label :mobile_number %><br>
+  <%#  <%= f.text_field :mobile_number %>
+  </div>
+   <div class="field">
+    <%= d.label :email %><br>
+    <%= d.text_field :email %>
+  </div> 
+  <% end %>
