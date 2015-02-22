@@ -13,7 +13,9 @@ class CustomersController < ApplicationController
   end
 
   def new
-    @customer = Customer.new
+    @customer = Customer.find(params[:customer_id])
+    @contact = Contact.new
+    
     respond_with(@customer)
   end
 
@@ -21,6 +23,7 @@ class CustomersController < ApplicationController
   end
 
   def create
+    @contact = Contact.new(contact_params)
     @customer = Customer.new(customer_params)
     if @customer.save
       redirect_to new_customer_contact_path(@customer)
@@ -28,7 +31,7 @@ class CustomersController < ApplicationController
       render 'edit'
     end
   end
-  #  @customer.current_step = session[:customer_step]
+    #  @customer.current_step = session[:customer_step]
    # @customer.next_step
     #session[:customer_step] = @customer.current_step
   #  render 'new'
@@ -47,10 +50,10 @@ class CustomersController < ApplicationController
 
   private
     def set_customer
-      @customer = Customer.find(params[:id])
+      @customer = Customer.find(params[:customer_id])
     end
 
-    def customer_params
-      params.require(:customer).permit(:company_name, :email, :phone_number, :contact_person)
+    def contact_params
+      params.require(:customer).permit(:company_name, :email, :phone_number, :contact_person, :customer_id)
     end
 end
