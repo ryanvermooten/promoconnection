@@ -22,12 +22,18 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    @customer.current_step = session[:customer_step]
-    @customer.next_step
-    session[:customer_step] = @customer.current_step
-    render 'new'
-    #respond_with(@customer)
+    if @customer.save
+      redirect_to new_customer_contact_path(@customer)
+    else
+      render 'edit'
+    end
   end
+  #  @customer.current_step = session[:customer_step]
+   # @customer.next_step
+    #session[:customer_step] = @customer.current_step
+  #  render 'new'
+    #respond_with(@customer)
+ 
 
   def update
     @customer.update(customer_params)

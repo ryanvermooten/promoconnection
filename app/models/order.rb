@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
 	tracked 
 	has_and_belongs_to_many :users
 	belongs_to :customer
-	has_and_belongs_to_many :templates
+	has_and_belongs_to_many :templates, through: :orders_templates
 	mount_uploader :image, ImageUploader
 	
 

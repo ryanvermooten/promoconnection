@@ -49,9 +49,11 @@ class OrdersController < ApplicationController
   def import
     Order.import(params[:file])
     redirect_to root_url, notice: "products imported"
+  end
 
     def prepare_customers
       @customers = Customer.all
+    end
     def set_order
       @order = Order.find(params[:id])
     end
@@ -59,5 +61,4 @@ class OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:customer_id, :special_notes, :image, :due_at, :template_ids => [])
     end
-end
 end

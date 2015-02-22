@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   	resources :materials
   end
 
-  resources :customers
+  resources :customers do
+    resources :contacts
+  end
 
   resources :orders do
     collection { post :import}
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
   resources :templates
 
   resources :activities
+
+
 
 
   mount Upmin::Engine => '/admin'

@@ -4,8 +4,8 @@ class Customer < ActiveRecord::Base
 	has_many :orders
 	belongs_to :payment_option
 	accepts_nested_attributes_for :payment_option
-	belongs_to :contact
-	accepts_nested_attributes_for :contact
+	has_and_belongs_to_many :contacts, through: :contacts_customers
+	accepts_nested_attributes_for :contacts
 	attr_writer :current_step
 
 
