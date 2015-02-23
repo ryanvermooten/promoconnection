@@ -1,0 +1,5 @@
+<% if activity.trackable %>new order is created
+  <%= link_to activity.trackable.contact_person, activity.trackable %>
+<% else %>
+  order has since been removed
+<% end %>

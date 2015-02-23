@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
 	include PublicActivity::Model
-	tracked
+	tracked owner: ->(controller, model) { controller && controller.current_user }
 	has_many :orders
 	belongs_to :payment_option
 	accepts_nested_attributes_for :payment_option

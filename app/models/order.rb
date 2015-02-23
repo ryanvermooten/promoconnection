@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
 	include PublicActivity::Model
-	tracked 
+	tracked owner: ->(controller, model) { controller && controller.current_user } 
 	has_and_belongs_to_many :users
 	belongs_to :customer
 	has_and_belongs_to_many :templates, through: :orders_templates
