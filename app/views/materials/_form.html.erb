@@ -1,15 +1,22 @@
 <div class="panel panel-default">
 <strong>Add a material</strong>
-<%= form_for([@supplier.material, @materials]) do |g| %>
-% if @material.errors.any? %>
+<%= form_for([@supplier, @materials]) do |g| %>
+<% if @supplier.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@material.errors.count, "error") %> prohibited this material from being saved:</h2>
-
+      <h2><%= pluralize(@supplier.errors.count, "error") %> prohibited this material from being saved:</h2>
+<% end %>
 <fieldset>
 
       <%= g.label :name %> 
       <%= g.text_field :name %>
     </p>
+
+    <%= g.fields_for :materials_suppliers do |tu_form| %>
+        <%#= tu_form.select :material_id, Material.all.collect  { |p| [p.name, p.id] } %>
+        <%= tu_form.hidden_field :supplier_id, :value => @supplier.id %>
+          <%= tu_form.label :price %>
+          <%= tu_form.text_field :price %>
+    <%end%>
 
 <div class="form-actions">
        <%= g.submit 'continue', :class =>  'btn btn-lg btn-success' %>

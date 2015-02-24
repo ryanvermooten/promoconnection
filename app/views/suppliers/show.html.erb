@@ -22,9 +22,9 @@
 
 <p>
 <strong> Materals sold by supplier </strong>
-	<%= @supplier.materials %> <br/>
+	<%= @supplier.materials.collect  { |p| p.name } %> <br/>
 	<br/>
-<%= link_to 'Create new materials', new_supplier_material_path(@supplier.materials)  %>
+<%= link_to 'Create new materials', new_supplier_material_path(@supplier)  %>
 </p>
 
 <%= link_to 'Edit', edit_supplier_path(@supplier) %> |

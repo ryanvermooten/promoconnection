@@ -14,6 +14,7 @@ class SuppliersController < ApplicationController
 
   def new
     @supplier = Supplier.new
+    @supplier.materials_suppliers.build
     respond_with(@supplier)
   end
 
@@ -42,6 +43,6 @@ class SuppliersController < ApplicationController
     end
 
     def supplier_params
-      params.require(:supplier).permit(:company_name, :email, :phone_number, :contact_person)
+      params.require(:supplier).permit(:company_name, :email, :phone_number, :contact_person,materials_suppliers_attributes: [:id,:material_id,:price, :_destroy])
     end
 end

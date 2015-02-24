@@ -29,9 +29,24 @@
   </div>
   <div class="field">
   <% Material.all.each do |material| %>
-    <%= check_box_tag "supplier[material_ids][], material.id" %>
-    <%= material.name %> <br/>
-    <% end %>
+    <%= f.fields_for :materials_suppliers do |tu_form| %>
+        <%#= tu_form.select :material_id, Material.all.collect  { |p| [p.name, p.id] } %>
+          <div><%=tu_form.check_box :material_id , {}, "#{material.id}", nil   %>
+          <%= material.name %></div>
+          <%= tu_form.label :price %>
+          <%= tu_form.text_field :price %>
+    <%end%>
+    
+  <%end%>
+  </div>
+
+
+<!--
+  <% #Material.all.each do |material| %>
+    <%#= check_box_tag "supplier[material_ids][], material.id" %>
+    <%#= material.name %> <br/>
+    <%# end %> -->
+
   <div class="actions">
     <%= f.submit %>
   </div>
